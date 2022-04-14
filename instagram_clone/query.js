@@ -3,6 +3,14 @@ const stringify = require('../utils')
 
 const getUsersAndFollowers = async () => {
   try {
+    const list = await User.findAll({
+      include: [{
+        model: User,
+        as: 'followers',
+        through: { attributes: [] }
+      }]
+    })
+    stringify(list)
   } catch (error) {
     console.log(error)
   }
@@ -10,6 +18,14 @@ const getUsersAndFollowers = async () => {
 
 const getUserFollowing = async () => {
   try {
+    const list = await User.findAll({
+      include: [{
+        model: User,
+        as: 'following',
+        through: { attributes: [] }
+      }]
+    })
+    stringify(list)
   } catch (error) {
     console.log(error)
   }
